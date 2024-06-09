@@ -7,7 +7,7 @@ import { errorHandler } from '@/utils/error-handler'
 const app = express()
 
 app.use(express.json())
-app.use('/', homRouter)
+app.use('/api', homRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
