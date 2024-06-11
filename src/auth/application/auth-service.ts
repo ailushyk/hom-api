@@ -1,15 +1,11 @@
-import { User } from '@/user/domain/user'
+import { IAuthService, User } from '@/auth/domain/user'
 
-interface AuthServiceDependencies {}
-
-export class AuthService {
-  constructor(private dependencies: AuthServiceDependencies) {}
-
-  verifyToken(token: string): User | undefined {
-    // TODO: verify token
-    return {
+export class AuthService implements IAuthService {
+  verifyToken(token: string) {
+    // TODO:
+    return Promise.resolve({
       id: '1',
       username: 'Alex I.',
-    }
+    })
   }
 }
