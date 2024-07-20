@@ -1,8 +1,14 @@
 ### Test
-GET http://localhost:3003/test
+GET http://localhost:3030/health
+
+### Get all languauges
+#GET http://localhost:3030/api/languages
+
+### Get all words
+GET http://localhost:3030/api/vocabulary/1
 
 ### Add new word
-POST http://localhost:3003/api/vocabulary/1
+POST http://localhost:3030/api/vocabulary/1
 Content-Type: application/json
 
 {

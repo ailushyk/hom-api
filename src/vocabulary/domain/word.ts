@@ -20,6 +20,7 @@ export interface IWordService {
   addWord(word: Word, userId: string): Promise<WordReadOnly>
   addTranslation(
     wordId: string,
-    translation: Word,
+    userId: string,
+    translation: Translation,
   ): Promise<TranslationReadOnly>
 }

@@ -5,17 +5,15 @@ import {
   DATABASE_PORT,
   DATABASE_USER,
 } from '@/constans'
-import { Client } from 'pg'
+import { Pool } from 'pg'
 import { drizzle } from 'drizzle-orm/node-postgres'
 
-const client = new Client({
+const client = new Pool({
   host: DATABASE_HOST,
   port: DATABASE_PORT,
   user: DATABASE_USER,
   password: DATABASE_PASSWORD,
   database: DATABASE_NAME,
 })
-
-client.connect().then()
 
 export const db = drizzle(client)

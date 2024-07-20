@@ -16,4 +16,8 @@ router.get('/vocabulary/:userId/:wordId', vocabularyController.getWord)
 router.put('/vocabulary/:userId/:wordId', vocabularyController.updateWord)
 router.delete('/vocabulary/:userId/:wordId', vocabularyController.deleteWord)
 
+router.post(
+  '/api/vocabulary/:userId/:wordId/translation',
+  vocabularyController.addTranslation,
+)
 export default router

@@ -8,7 +8,9 @@
     "db:generate": "pnpm drizzle-kit generate --config=./src/config/drizzle.config.ts",
     "db:push": "pnpm drizzle-kit push --config=./src/config/drizzle.config.ts",
     "db:drop": "pnpm drizzle-kit drop --config=./src/config/drizzle.config.ts",
-    "db:up": "pnpm drizzle-kit migrate --config=./src/config/drizzle.config.ts"
+    "db:up": "pnpm drizzle-kit migrate --config=./src/config/drizzle.config.ts",
+    "db:seed": "pnpm tsx --env-file=.env ./src/vocabulary/infrastructure/seed.ts",
+    "db:studio": "npx drizzle-kit studio --config=./src/config/drizzle.config.ts"
   },
   "keywords": [],
   "author": "Alex Iliushyk <ailushyk@gmail.com>",

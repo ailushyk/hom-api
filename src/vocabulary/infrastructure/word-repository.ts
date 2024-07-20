@@ -1,6 +1,7 @@
 import { Word } from '@/vocabulary/domain/word'
 
 import { SelectWordType } from '@/vocabulary/application/schema'
+import { Translation } from '@/vocabulary/domain/translation'
 
 export interface IWordRepository {
   addWord(data: Word): Promise<SelectWordType>
@@ -12,4 +13,9 @@ export interface IWordRepository {
     userId: string,
     data: Word,
   ): Promise<SelectWordType>
+  addTranslation(
+    wordId: string,
+    userId: string,
+    translation: string,
+  ): Promise<Translation>
 }

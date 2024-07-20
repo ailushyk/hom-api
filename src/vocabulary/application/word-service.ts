@@ -1,7 +1,10 @@
 import { IWordService, Word, WordReadOnly } from '@/vocabulary/domain/word'
 import { Converter } from '@/vocabulary/application/converter'
 import { IWordRepository } from '@/vocabulary/infrastructure/word-repository'
-import { TranslationReadOnly } from '@/vocabulary/domain/translation'
+import {
+  Translation,
+  TranslationReadOnly,
+} from '@/vocabulary/domain/translation'
 import { InsertWordType, SelectWordType } from '@/vocabulary/application/schema'
 
 export class WordService implements IWordService {
@@ -33,7 +36,8 @@ export class WordService implements IWordService {
 
   async addTranslation(
     wordId: string,
-    translation: Word,
+    userId: string,
+    translation: Translation,
   ): Promise<TranslationReadOnly> {
     throw new Error('Method not implemented.')
   }

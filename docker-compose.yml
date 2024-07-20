@@ -9,9 +9,9 @@ services:
       - ./:/app
       - /app/node_modules
     ports:
-      - "3010:${PORT}"
+      - "${PORT}:${PORT}"
     environment:
-      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_HOST: db
       DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_DB: ${DATABASE_NAME}
       DATABASE_USER: ${DATABASE_USER}
@@ -21,14 +21,15 @@ services:
 
   db:
     image: postgres:16.3-alpine
-    container_name: api-db
+    container_name: hom-db
     restart: always
     environment:
+      POSTGRES_PORT: ${DATABASE_PORT}
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     ports:
-      - "5432:5432"
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -36,12 +37,6 @@ services:
       interval: 1s
       timeout: 5s
       retries: 10
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
 
 volumes:
   pgdata:

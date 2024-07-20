@@ -28,5 +28,12 @@ export function wordRepositoryPg(): IWordRepository {
     deleteWord(id: string, userId: string): Promise<void> {
       throw new Error('Method not implemented.')
     },
+    addTranslation: async (
+      wordId: string,
+      userId: string,
+      translation: string,
+    ) => {
+      throw new Error('Method not implemented.')
+    },
   }
 }

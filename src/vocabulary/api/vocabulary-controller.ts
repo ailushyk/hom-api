@@ -15,9 +15,23 @@ export function VocabularyController(wordService: IWordService) {
     }
   }
 
+  async function getWord(req: Request, res: Response) {
+    const { userId, wordId } = req.params
+    try {
+      const data = await wordService.getWordById(wordId, userId)
+      return res.status(200).json({ data })
+    } catch (error) {
+      console.error(error)
+      if (error instanceof Error) {
+        return res.status(400).json({ message: error.message })
+      }
+    }
+  }
+
   async function addWord(req: Request, res: Response) {
     const { userId } = req.params
     const { text, language } = req.body
+    console.log('in addWord: ', req.body)
     try {
       const result = await wordService.addWord(
         {
@@ -35,11 +49,22 @@ export function VocabularyController(wordService: IWordService) {
     }
   }
 
-  async function getWord(req: Request, res: Response) {
+  // update word in the vocabulary
+  function updateWord(req: Request, res: Response) {}
+
+  // delete word from the vocabulary
+  function deleteWord(req: Request, res: Response) {}
+
+  let addTranslation = async (req: Request, res: Response) => {
     const { userId, wordId } = req.params
+    const { language, translation, description } = req.body
     try {
-      const data = await wordService.getWordById(wordId, userId)
-      return res.status(200).json({ data })
+      const result = await wordService.addTranslation(wordId, userId, {
+        language,
+        translation,
+        description,
+      })
+      return res.status(201).json({ data: result })
     } catch (error) {
       console.error(error)
       if (error instanceof Error) {
@@ -47,18 +72,12 @@ export function VocabularyController(wordService: IWordService) {
       }
     }
   }
-
-  // update word in the vocabulary
-  function updateWord(req: Request, res: Response) {}
-
-  // delete word from the vocabulary
-  function deleteWord(req: Request, res: Response) {}
-
   return {
     getWords,
     addWord,
     getWord,
     updateWord,
     deleteWord,
+    addTranslation,
   }
 }

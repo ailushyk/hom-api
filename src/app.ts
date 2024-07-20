@@ -12,8 +12,16 @@ app.use(express.json())
 const auth = authMiddleware(new AuthService())
 app.use(auth.authenticateToken)
 
-app.use('/test', (req, res) => {
-  res.json({ message: 'HOM' })
+app.use('/health', (req, res) => {
+  res.json({
+    status: 'UP',
+    checks: [
+      {
+        name: 'API health check',
+        status: 'UP',
+      },
+    ],
+  })
 })
 
 app.use('/api', auth.guard, vocabularyRouter)
